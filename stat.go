@@ -40,7 +40,7 @@ func init() {
 func Record(actcion string, v ...interface{}) {
 	statchan <- fmt.Sprintf("[%15s]", strings.ToUpper(actcion)) + fmt.Sprint(v)
 	if wait := len(statchan); wait > cap(statchan)/10*6 && wait%100 == 0 {
-		golog.Warnf("taskpool excutor taskchan process,waitchan:%d/%d.", wait, cap(statchan))
+		golog.Warnf("state record taskchan process,waitchan:%d/%d.", wait, cap(statchan))
 	}
 }
 
