@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"path"
+	"path/filepath"
 	"strings"
 	"time"
 
@@ -19,9 +20,9 @@ var statFile *os.File
 var appName string
 
 func init() {
-	appName = strings.Replace(os.Args[0], "\\", "/", -1)
-	_, name := path.Split(appName)
-	names := strings.Split(name, ".")
+	appName = path.Clean(os.Args[0])
+	_, appName = filepath.Split(appName)
+	names := strings.Split(appName, ".")
 	appName = names[0]
 
 	var err error
